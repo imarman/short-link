@@ -1,5 +1,7 @@
-package com.arman.shortlink.admin.dto.req.resp;
+package com.arman.shortlink.admin.dto.resp;
 
+import com.arman.shortlink.admin.common.serialize.PhoneDesensitizationSerializer;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.Data;
 
 import java.util.Date;
@@ -28,6 +30,7 @@ public class UserResp {
     /**
      * 手机
      */
+    @JsonSerialize(using = PhoneDesensitizationSerializer.class)
     private String mobile;
 
     /**

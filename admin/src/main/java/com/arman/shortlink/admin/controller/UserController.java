@@ -1,7 +1,7 @@
 package com.arman.shortlink.admin.controller;
 
 import com.arman.shortlink.admin.common.convention.R;
-import com.arman.shortlink.admin.dto.req.resp.UserResp;
+import com.arman.shortlink.admin.dto.resp.UserResp;
 import com.arman.shortlink.admin.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;

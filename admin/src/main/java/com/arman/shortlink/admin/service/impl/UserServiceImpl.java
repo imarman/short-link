@@ -4,7 +4,7 @@ import com.arman.shortlink.admin.common.convention.BizException;
 import com.arman.shortlink.admin.common.enums.RespEnum;
 import com.arman.shortlink.admin.dao.mapper.UserMapper;
 import com.arman.shortlink.admin.dao.pojo.UserDo;
-import com.arman.shortlink.admin.dto.req.resp.UserResp;
+import com.arman.shortlink.admin.dto.resp.UserResp;
 import com.arman.shortlink.admin.service.UserService;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;

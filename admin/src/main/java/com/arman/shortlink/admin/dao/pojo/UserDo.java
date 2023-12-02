@@ -69,7 +69,7 @@ public class UserDo {
      * 删除表是(0:未删除，1:已删除)
      */
     @TableField(value = "del_flag")
-    @TableLogic(value = "1", delval = "0")
+    @TableLogic
     private Boolean delFlag;
 
 }
