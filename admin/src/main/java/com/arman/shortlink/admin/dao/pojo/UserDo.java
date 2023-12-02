@@ -38,8 +38,8 @@ public class UserDo {
     /**
      * 手机
      */
-    @TableField(value = "mibile")
-    private String mibile;
+    @TableField(value = "mobile")
+    private String mobile;
 
     /**
      * 邮箱

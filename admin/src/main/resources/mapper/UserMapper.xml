@@ -8,7 +8,7 @@
     <result column="username" jdbcType="VARCHAR" property="username" />
     <result column="password" jdbcType="VARCHAR" property="password" />
     <result column="real_name" jdbcType="VARCHAR" property="realName" />
-    <result column="mibile" jdbcType="VARCHAR" property="mibile" />
+    <result column="mobile" jdbcType="VARCHAR" property="mobile" />
     <result column="email" jdbcType="VARCHAR" property="email" />
     <result column="deletion_time" jdbcType="BIGINT" property="deletionTime" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
@@ -17,7 +17,7 @@
   </resultMap>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
-    id, username, `password`, real_name, mibile, email, deletion_time, create_time, update_time, 
+    id, username, `password`, real_name, mobile, email, deletion_time, create_time, update_time,
     del_flag
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
@@ -35,11 +35,11 @@
   <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.arman.shortlink.admin.dao.pojo.UserDo" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into t_user (username, `password`, real_name, 
-      mibile, email, deletion_time, 
+      mobile, email, deletion_time, 
       create_time, update_time, del_flag
       )
     values (#{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{realName,jdbcType=VARCHAR}, 
-      #{mibile,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{deletionTime,jdbcType=BIGINT}, 
+      #{mobile,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{deletionTime,jdbcType=BIGINT}, 
       #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{delFlag,jdbcType=BOOLEAN}
       )
   </insert>
@@ -56,8 +56,8 @@
       <if test="realName != null">
         real_name,
       </if>
-      <if test="mibile != null">
-        mibile,
+      <if test="mobile != null">
+        mobile,
       </if>
       <if test="email != null">
         email,
@@ -85,8 +85,8 @@
       <if test="realName != null">
         #{realName,jdbcType=VARCHAR},
       </if>
-      <if test="mibile != null">
-        #{mibile,jdbcType=VARCHAR},
+      <if test="mobile != null">
+        #{mobile,jdbcType=VARCHAR},
       </if>
       <if test="email != null">
         #{email,jdbcType=VARCHAR},
@@ -118,8 +118,8 @@
       <if test="realName != null">
         real_name = #{realName,jdbcType=VARCHAR},
       </if>
-      <if test="mibile != null">
-        mibile = #{mibile,jdbcType=VARCHAR},
+      <if test="mobile != null">
+        mobile = #{mobile,jdbcType=VARCHAR},
       </if>
       <if test="email != null">
         email = #{email,jdbcType=VARCHAR},
@@ -145,7 +145,7 @@
     set username = #{username,jdbcType=VARCHAR},
       `password` = #{password,jdbcType=VARCHAR},
       real_name = #{realName,jdbcType=VARCHAR},
-      mibile = #{mibile,jdbcType=VARCHAR},
+      mobile = #{mobile,jdbcType=VARCHAR},
       email = #{email,jdbcType=VARCHAR},
       deletion_time = #{deletionTime,jdbcType=BIGINT},
       create_time = #{createTime,jdbcType=TIMESTAMP},
