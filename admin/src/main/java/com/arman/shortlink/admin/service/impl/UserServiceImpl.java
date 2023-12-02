@@ -1,6 +1,7 @@
 package com.arman.shortlink.admin.service.impl;
 
 import cn.hutool.core.bean.BeanUtil;
+import com.arman.shortlink.admin.common.constant.RedissonLockConst;
 import com.arman.shortlink.admin.common.convention.BizException;
 import com.arman.shortlink.admin.common.enums.RespEnum;
 import com.arman.shortlink.admin.dao.mapper.UserMapper;
@@ -14,6 +15,8 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.redisson.api.RBloomFilter;
+import org.redisson.api.RLock;
+import org.redisson.api.RedissonClient;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -29,6 +32,8 @@ import java.util.Optional;
 public class UserServiceImpl extends ServiceImpl<UserMapper, UserDo> implements UserService {
 
     private final RBloomFilter<String> bloomFilter;
+
+    private final RedissonClient redissonClient;
 
     @Override
     public UserResp getUserByUsername(String username) {
@@ -51,13 +56,26 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserDo> implements 
         if (hasUsername(registerModel.getUsername())) {
             throw new BizException(RespEnum.USER_NAME_EXIST_ERROR);
         }
-        boolean saved = save(BeanUtil.toBean(registerModel, UserDo.class));
-        if (!saved) {
-            throw new BizException(RespEnum.USER_REGISTER_ERROR);
+
+        // 通过分布式锁，防止用户并发注册
+        RLock lock = redissonClient.getLock(RedissonLockConst.LOCK_USER_REGISTER_KEY + registerModel.getUsername());
+
+        // 如果获取不到锁，说明已经有用户在注册了
+        if (!lock.tryLock()) {
+            throw new BizException(RespEnum.USER_NAME_EXIST_ERROR);
         }
 
-        // 将用户名添加到布隆过滤器
-        bloomFilter.add(registerModel.getUsername());
+        try {
+            boolean saved = save(BeanUtil.toBean(registerModel, UserDo.class));
+            if (!saved) {
+                throw new BizException(RespEnum.USER_REGISTER_ERROR);
+            }
+            // 将用户名添加到布隆过滤器
+            bloomFilter.add(registerModel.getUsername());
+        } finally {
+            lock.unlock();
+        }
+
 
     }
 
