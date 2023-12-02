@@ -1,10 +1,11 @@
 package com.arman.shortlink.admin.dto.resp;
 
 import com.arman.shortlink.admin.common.serialize.PhoneDesensitizationSerializer;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.Data;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 /**
  * @author Arman
@@ -39,17 +40,17 @@ public class UserResp {
     private String email;
 
 
-
     /**
      * 创建时间
      */
-    private Date createTime;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime createTime;
 
     /**
      * 修改时间
      */
-    private Date updateTime;
-
-
+    // @JsonSerialize(using = LocalDateTimeSerializer.class)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime updateTime;
 
 }

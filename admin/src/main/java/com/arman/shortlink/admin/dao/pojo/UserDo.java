@@ -3,7 +3,7 @@ package com.arman.shortlink.admin.dao.pojo;
 import com.baomidou.mybatisplus.annotation.*;
 import lombok.Data;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 /**
  * @author Arman
@@ -14,7 +14,7 @@ public class UserDo {
     /**
      * id
      */
-    @TableId(value = "id", type = IdType.INPUT)
+    @TableId(value = "id", type = IdType.ASSIGN_ID)
     private Long id;
 
     /**
@@ -56,19 +56,19 @@ public class UserDo {
     /**
      * 创建时间
      */
-    @TableField(value = "create_time")
-    private Date createTime;
+    @TableField(value = "create_time", fill = FieldFill.INSERT)
+    private LocalDateTime createTime;
 
     /**
      * 修改时间
      */
-    @TableField(value = "update_time")
-    private Date updateTime;
+    @TableField(value = "update_time", fill = FieldFill.UPDATE)
+    private LocalDateTime updateTime;
 
     /**
      * 删除表是(0:未删除，1:已删除)
      */
-    @TableField(value = "del_flag")
+    @TableField(value = "del_flag", fill = FieldFill.INSERT)
     @TableLogic
     private Boolean delFlag;
 

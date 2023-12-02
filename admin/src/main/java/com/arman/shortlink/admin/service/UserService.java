@@ -1,6 +1,7 @@
 package com.arman.shortlink.admin.service;
 
 import com.arman.shortlink.admin.dao.pojo.UserDo;
+import com.arman.shortlink.admin.dto.req.UserRegisterReq;
 import com.arman.shortlink.admin.dto.resp.UserResp;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -15,4 +16,16 @@ public interface UserService extends IService<UserDo> {
      * @return 用户信息
      */
     UserResp getUserByUsername(String username);
+
+    /**
+     * 用户名是否已被注册
+     *
+     * @param username 用户名
+     */
+    Boolean hasUsername(String username);
+
+    /**
+     * 用户注册
+     */
+    void register(UserRegisterReq registerModel);
 }
