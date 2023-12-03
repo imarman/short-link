@@ -8,7 +8,7 @@
         <artifactId>short-link</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-    <packaging>pom</packaging>
+<!--    <packaging>pom</packaging>-->
 
     <artifactId>common</artifactId>
 
