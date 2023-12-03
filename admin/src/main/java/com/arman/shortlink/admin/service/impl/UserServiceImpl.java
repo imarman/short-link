@@ -22,6 +22,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.redisson.api.RBloomFilter;
 import org.redisson.api.RLock;
 import org.redisson.api.RedissonClient;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.redis.core.BoundHashOperations;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
@@ -39,7 +40,8 @@ import java.util.concurrent.TimeUnit;
 @Slf4j
 public class UserServiceImpl extends ServiceImpl<UserMapper, UserDo> implements UserService {
 
-    private final RBloomFilter<String> bloomFilter;
+    @Qualifier("userRegisterBloomFilter")
+    private final RBloomFilter<String> userRegisterBloomFilter;
 
     private final RedissonClient redissonClient;
 
@@ -57,7 +59,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserDo> implements 
     @Override
     public Boolean hasUsername(String username) {
         // 使用布隆过滤器判断是否已被注册，避免频繁调用DB
-        return bloomFilter.contains(username);
+        return userRegisterBloomFilter.contains(username);
     }
 
     @Override
@@ -81,7 +83,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserDo> implements 
                 throw new BizException(RespEnum.USER_REGISTER_ERROR);
             }
             // 将用户名添加到布隆过滤器
-            bloomFilter.add(registerModel.getUsername());
+            userRegisterBloomFilter.add(registerModel.getUsername());
         } finally {
             lock.unlock();
         }

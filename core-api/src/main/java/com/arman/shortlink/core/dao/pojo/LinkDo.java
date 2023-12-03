@@ -68,19 +68,19 @@ public class LinkDo extends BaseDo {
      * 启用标识 0：启用 1：未启用
      */
     @TableField(value = "enable_status")
-    private Boolean enableStatus;
+    private Integer enableStatus;
 
     /**
      * 创建类型 0：接口创建 1：控制台创建
      */
     @TableField(value = "created_type")
-    private Boolean createdType;
+    private Integer createdType;
 
     /**
      * 有效期类型 0：永久有效 1：自定义
      */
     @TableField(value = "valid_date_type")
-    private Boolean validDateType;
+    private Integer validDateType;
 
     /**
      * 有效期

@@ -8,7 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @author Arman
  */
 @MapperScan("com.arman.shortlink.core.dao.mapper")
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = {"com.arman.shortlink.core", "com.arman.shortlink.common"})
 public class SortLinkCoreApplication {
 
     public static void main(String[] args) {
