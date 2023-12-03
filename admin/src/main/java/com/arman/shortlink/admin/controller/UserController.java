@@ -45,13 +45,21 @@ public class UserController {
         userService.updateUserInfo(updateReq);
         return R.ok();
     }
+
     @PostMapping("login")
     public R<UserLoginResp> login(@RequestBody @Validated UserLoginReq loginReq) {
         return R.ok(userService.login(loginReq));
     }
 
     @GetMapping("checkLogin")
-    public R<Boolean> checkLogin(@RequestParam("username") String username,@RequestParam("token") String token) {
+    public R<Boolean> checkLogin(@RequestParam("username") String username, @RequestParam("token") String token) {
         return R.ok(userService.checkLogin(username, token));
     }
+
+    @PostMapping("logout/{username}/{token}")
+    public R<Boolean> logout(@PathVariable("username") String username, @PathVariable("token") String token) {
+        userService.logout(username, token);
+        return R.ok();
+    }
+
 }
