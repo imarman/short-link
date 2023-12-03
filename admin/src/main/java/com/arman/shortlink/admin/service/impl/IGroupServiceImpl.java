@@ -1,6 +1,7 @@
 package com.arman.shortlink.admin.service.impl;
 
 import cn.hutool.core.bean.BeanUtil;
+import com.arman.shortlink.admin.common.biz.user.UserInfoHolder;
 import com.arman.shortlink.admin.dao.mapper.GroupMapper;
 import com.arman.shortlink.admin.dao.pojo.GroupDo;
 import com.arman.shortlink.admin.dto.resp.GroupResp;
@@ -21,7 +22,7 @@ public class IGroupServiceImpl extends ServiceImpl<GroupMapper, GroupDo> impleme
 
     @Override
     public void saveGroup(String groupName) {
-        String username = "arman";
+        String username = UserInfoHolder.getUsername();
         String gid;
         do {
             gid = RandomGenerator.generateRandom();
@@ -40,7 +41,7 @@ public class IGroupServiceImpl extends ServiceImpl<GroupMapper, GroupDo> impleme
 
     @Override
     public List<GroupResp> listGroup() {
-        String username = "arman";
+        String username = UserInfoHolder.getUsername();
         LambdaQueryWrapper<GroupDo> wrapper = Wrappers.lambdaQuery(GroupDo.class)
                 .eq(GroupDo::getUsername, username)
                 .orderByDesc(GroupDo::getSortOrder, GroupDo::getUpdateTime);
