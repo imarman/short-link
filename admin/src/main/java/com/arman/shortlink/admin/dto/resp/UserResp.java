@@ -1,6 +1,6 @@
 package com.arman.shortlink.admin.dto.resp;
 
-import com.arman.shortlink.admin.common.serialize.PhoneDesensitizationSerializer;
+import com.arman.shortlink.common.serialize.PhoneDesensitizationSerializer;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.Data;

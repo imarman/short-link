@@ -1,12 +1,12 @@
 package com.arman.shortlink.admin.controller;
 
-import com.arman.shortlink.admin.common.convention.R;
 import com.arman.shortlink.admin.dto.req.UserLoginReq;
 import com.arman.shortlink.admin.dto.req.UserRegisterReq;
 import com.arman.shortlink.admin.dto.req.UserUpdateReq;
 import com.arman.shortlink.admin.dto.resp.UserLoginResp;
 import com.arman.shortlink.admin.dto.resp.UserResp;
 import com.arman.shortlink.admin.service.UserService;
+import com.arman.shortlink.common.convention.R;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.arman.shortlink.core.dao.mapper.LinkDoMapper">
+  <resultMap id="BaseResultMap" type="com.arman.shortlink.core.dao.pojo.LinkDo">
+    <!--@mbg.generated-->
+    <!--@Table t_link-->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="domain" jdbcType="VARCHAR" property="domain" />
+    <result column="short_uri" jdbcType="VARCHAR" property="shortUri" />
+    <result column="full_short_url" jdbcType="VARCHAR" property="fullShortUrl" />
+    <result column="origin_url" jdbcType="VARCHAR" property="originUrl" />
+    <result column="click_num" jdbcType="INTEGER" property="clickNum" />
+    <result column="gid" jdbcType="VARCHAR" property="gid" />
+    <result column="favicon" jdbcType="VARCHAR" property="favicon" />
+    <result column="enable_status" jdbcType="BOOLEAN" property="enableStatus" />
+    <result column="created_type" jdbcType="BOOLEAN" property="createdType" />
+    <result column="valid_date_type" jdbcType="BOOLEAN" property="validDateType" />
+    <result column="valid_date" jdbcType="TIMESTAMP" property="validDate" />
+    <result column="describe" jdbcType="VARCHAR" property="describe" />
+    <result column="total_pv" jdbcType="INTEGER" property="totalPv" />
+    <result column="total_uv" jdbcType="INTEGER" property="totalUv" />
+    <result column="total_uip" jdbcType="INTEGER" property="totalUip" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="del_time" jdbcType="BIGINT" property="delTime" />
+    <result column="del_flag" jdbcType="BOOLEAN" property="delFlag" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, `domain`, short_uri, full_short_url, origin_url, click_num, gid, favicon, enable_status, 
+    created_type, valid_date_type, valid_date, `describe`, total_pv, total_uv, total_uip, 
+    create_time, update_time, del_time, del_flag
+  </sql>
+</mapper>

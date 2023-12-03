@@ -1,7 +1,7 @@
 package com.arman.shortlink.admin.service.impl;
 
 import cn.hutool.core.bean.BeanUtil;
-import com.arman.shortlink.admin.common.biz.user.UserInfoHolder;
+import com.arman.shortlink.common.biz.user.UserInfoHolder;
 import com.arman.shortlink.admin.dao.mapper.GroupMapper;
 import com.arman.shortlink.admin.dao.pojo.GroupDo;
 import com.arman.shortlink.admin.dto.req.GroupSortReq;
