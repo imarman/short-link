@@ -4,10 +4,12 @@ import cn.hutool.core.bean.BeanUtil;
 import com.arman.shortlink.admin.common.biz.user.UserInfoHolder;
 import com.arman.shortlink.admin.dao.mapper.GroupMapper;
 import com.arman.shortlink.admin.dao.pojo.GroupDo;
+import com.arman.shortlink.admin.dto.req.GroupUpdateReq;
 import com.arman.shortlink.admin.dto.resp.GroupResp;
 import com.arman.shortlink.admin.service.IGroupService;
 import com.arman.shortlink.admin.utils.RandomGenerator;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
@@ -47,6 +49,18 @@ public class IGroupServiceImpl extends ServiceImpl<GroupMapper, GroupDo> impleme
                 .orderByDesc(GroupDo::getSortOrder, GroupDo::getUpdateTime);
         List<GroupDo> list = list(wrapper);
         return BeanUtil.copyToList(list, GroupResp.class);
+    }
+
+    @Override
+    public void updateGroup(GroupUpdateReq req) {
+        String username = UserInfoHolder.getUsername();
+        GroupDo groupDo = GroupDo.builder()
+                .name(req.getGroupName())
+                .build();
+        LambdaUpdateWrapper<GroupDo> wrapper = Wrappers.lambdaUpdate(GroupDo.class)
+                .eq(GroupDo::getGid, req.getGid())
+                .eq(GroupDo::getUsername, username);
+        update(groupDo, wrapper);
     }
 
     private Boolean hasGrid(String gid, String username) {
