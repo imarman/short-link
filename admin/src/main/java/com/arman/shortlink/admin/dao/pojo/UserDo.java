@@ -2,15 +2,17 @@ package com.arman.shortlink.admin.dao.pojo;
 
 import com.baomidou.mybatisplus.annotation.*;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.time.LocalDateTime;
 
 /**
  * @author Arman
  */
+@EqualsAndHashCode(callSuper = true)
 @Data
 @TableName(value = "t_user")
-public class UserDo {
+public class UserDo extends BaseDo {
     /**
      * id
      */
@@ -53,23 +55,5 @@ public class UserDo {
     @TableField(value = "deletion_time")
     private Long deletionTime;
 
-    /**
-     * 创建时间
-     */
-    @TableField(value = "create_time", fill = FieldFill.INSERT)
-    private LocalDateTime createTime;
-
-    /**
-     * 修改时间
-     */
-    @TableField(value = "update_time", fill = FieldFill.UPDATE)
-    private LocalDateTime updateTime;
-
-    /**
-     * 删除表是(0:未删除，1:已删除)
-     */
-    @TableField(value = "del_flag", fill = FieldFill.INSERT)
-    @TableLogic
-    private Boolean delFlag;
 
 }

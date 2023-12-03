@@ -4,14 +4,18 @@ import com.baomidou.mybatisplus.annotation.*;
 
 import java.time.LocalDateTime;
 
-import lombok.Data;
+import lombok.*;
 
 /**
  * @author Arman
  */
+@EqualsAndHashCode(callSuper = true)
 @Data
 @TableName(value = "t_group")
-public class GroupDo {
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+public class GroupDo extends BaseDo {
     /**
      * ID
      */
@@ -42,22 +46,4 @@ public class GroupDo {
     @TableField(value = "sort_order")
     private Integer sortOrder;
 
-    /**
-     * 创建时间
-     */
-    @TableField(value = "create_time", fill = FieldFill.INSERT)
-    private LocalDateTime createTime;
-
-    /**
-     * 修改时间
-     */
-    @TableField(value = "update_time", fill = FieldFill.UPDATE)
-    private LocalDateTime updateTime;
-
-    /**
-     * 删除表是(0:未删除，1:已删除)
-     */
-    @TableField(value = "del_flag", fill = FieldFill.INSERT)
-    @TableLogic
-    private Boolean delFlag;
 }

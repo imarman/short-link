@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.arman.shortlink.admin.dao.mapper.TGroupMapper">
-  <resultMap id="BaseResultMap" type="com.arman.shortlink.admin.dao.pojo.TGroup">
+<mapper namespace="com.arman.shortlink.admin.dao.mapper.GroupMapper">
+  <resultMap id="BaseResultMap" type="com.arman.shortlink.admin.dao.pojo.GroupDo">
     <!--@mbg.generated-->
     <!--@Table t_group-->
     <id column="id" jdbcType="BIGINT" property="id" />

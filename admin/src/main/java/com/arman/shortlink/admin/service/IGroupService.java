@@ -11,4 +11,8 @@ import com.baomidou.mybatisplus.extension.service.IService;
 public interface IGroupService extends IService<GroupDo> {
 
 
+    /**
+     * 新增分组
+     */
+    void saveGroup(String groupName);
 }
