@@ -4,6 +4,7 @@ import cn.hutool.core.bean.BeanUtil;
 import com.arman.shortlink.admin.common.biz.user.UserInfoHolder;
 import com.arman.shortlink.admin.dao.mapper.GroupMapper;
 import com.arman.shortlink.admin.dao.pojo.GroupDo;
+import com.arman.shortlink.admin.dto.req.GroupSortReq;
 import com.arman.shortlink.admin.dto.req.GroupUpdateReq;
 import com.arman.shortlink.admin.dto.resp.GroupResp;
 import com.arman.shortlink.admin.service.IGroupService;
@@ -61,6 +62,29 @@ public class IGroupServiceImpl extends ServiceImpl<GroupMapper, GroupDo> impleme
                 .eq(GroupDo::getGid, req.getGid())
                 .eq(GroupDo::getUsername, username);
         update(groupDo, wrapper);
+    }
+
+    @Override
+    public Boolean deleteByGid(String gid) {
+        String username = UserInfoHolder.getUsername();
+        LambdaUpdateWrapper<GroupDo> wrapper = Wrappers.lambdaUpdate(GroupDo.class)
+                .eq(GroupDo::getGid, gid)
+                .eq(GroupDo::getUsername, username);
+        return remove(wrapper);
+    }
+
+    @Override
+    public void sort(List<GroupSortReq> req) {
+        String username = UserInfoHolder.getUsername();
+        for (GroupSortReq groupSortReq : req) {
+            GroupDo groupDo = GroupDo.builder()
+                    .sortOrder(groupSortReq.getSort())
+                    .build();
+            LambdaUpdateWrapper<GroupDo> wrapper = Wrappers.lambdaUpdate(GroupDo.class)
+                    .eq(GroupDo::getGid, groupSortReq.getGid())
+                    .eq(GroupDo::getUsername, username);
+            update(groupDo, wrapper);
+        }
     }
 
     private Boolean hasGrid(String gid, String username) {

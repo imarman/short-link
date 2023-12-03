@@ -1,8 +1,8 @@
 package com.arman.shortlink.admin.controller;
 
 import com.arman.shortlink.admin.common.convention.R;
-import com.arman.shortlink.admin.dao.pojo.GroupDo;
 import com.arman.shortlink.admin.dto.req.GroupSaveReq;
+import com.arman.shortlink.admin.dto.req.GroupSortReq;
 import com.arman.shortlink.admin.dto.req.GroupUpdateReq;
 import com.arman.shortlink.admin.dto.resp.GroupResp;
 import com.arman.shortlink.admin.service.IGroupService;
@@ -40,4 +40,14 @@ public class GroupController {
         return R.ok();
     }
 
+    @DeleteMapping("{gid}")
+    public R<Boolean> deleteByGid(@PathVariable("gid") String gid) {
+        return R.ok(iGroupService.deleteByGid(gid));
+    }
+
+    @PostMapping("sort")
+    public R<?> sort(@RequestBody List<GroupSortReq> req) {
+        iGroupService.sort(req);
+        return R.ok();
+    }
 }
