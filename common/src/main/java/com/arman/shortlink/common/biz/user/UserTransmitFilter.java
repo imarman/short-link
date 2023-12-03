@@ -71,6 +71,9 @@ public class UserTransmitFilter implements Filter {
         }
     }
 
+    /**
+     * 全局拦截器无法拦截过滤器里面的异常，所以只能通过 response 返回出去
+     */
     private void returnJson(HttpServletResponse response, String json) {
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html; charset=utf-8");
