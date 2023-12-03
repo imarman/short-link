@@ -1,7 +1,10 @@
 package com.arman.shortlink.admin.controller;
 
 import com.arman.shortlink.admin.common.convention.R;
+import com.arman.shortlink.admin.dto.req.UserLoginReq;
 import com.arman.shortlink.admin.dto.req.UserRegisterReq;
+import com.arman.shortlink.admin.dto.req.UserUpdateReq;
+import com.arman.shortlink.admin.dto.resp.UserLoginResp;
 import com.arman.shortlink.admin.dto.resp.UserResp;
 import com.arman.shortlink.admin.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -35,5 +38,20 @@ public class UserController {
     public R<?> register(@RequestBody @Validated UserRegisterReq registerReq) {
         userService.register(registerReq);
         return R.ok();
+    }
+
+    @PutMapping
+    public R<?> updateUserInfo(@RequestBody @Validated UserUpdateReq updateReq) {
+        userService.updateUserInfo(updateReq);
+        return R.ok();
+    }
+    @PostMapping("login")
+    public R<UserLoginResp> login(@RequestBody @Validated UserLoginReq loginReq) {
+        return R.ok(userService.login(loginReq));
+    }
+
+    @GetMapping("checkLogin")
+    public R<Boolean> checkLogin(@RequestParam("username") String username,@RequestParam("token") String token) {
+        return R.ok(userService.checkLogin(username, token));
     }
 }
