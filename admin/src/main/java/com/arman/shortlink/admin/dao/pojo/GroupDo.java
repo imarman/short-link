@@ -16,6 +16,7 @@ import lombok.*;
 @NoArgsConstructor
 @Builder
 public class GroupDo extends BaseDo {
+
     /**
      * ID
      */
